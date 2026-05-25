@@ -1,3 +1,8 @@
+import { readFileSync } from 'fs';
+import { join } from 'path';
+
+// src/components/Footer.tsx
+
 // src/i18n/locales/en-US.ts
 var en_US_default = {
   components: {
@@ -329,7 +334,16 @@ function u2(e2, t2, n2, o2, i2, u3) {
 }
 
 // src/components/Footer.tsx
+function getQuartzVersion() {
+  try {
+    const pkg = JSON.parse(readFileSync(join(process.cwd(), "package.json"), "utf-8"));
+    return pkg.version ?? "";
+  } catch {
+    return "";
+  }
+}
 var Footer_default = ((opts) => {
+  const version = getQuartzVersion();
   const Footer = ({ displayClass, cfg }) => {
     const year = (/* @__PURE__ */ new Date()).getFullYear();
     const links = opts?.links ?? [];
@@ -337,8 +351,12 @@ var Footer_default = ((opts) => {
       /* @__PURE__ */ u2("p", { children: [
         i18n(cfg?.locale ?? "en-US").components.footer.createdWith,
         " ",
-        /* @__PURE__ */ u2("a", { href: "https://quartz.jzhao.xyz/", children: "Quartz" }),
-        " \xA9 ",
+        /* @__PURE__ */ u2("a", { href: "https://quartz.jzhao.xyz/", children: [
+          "Quartz",
+          version ? ` v${version}` : ""
+        ] }),
+        " \xA9",
+        " ",
         year
       ] }),
       /* @__PURE__ */ u2("ul", { children: Object.entries(links).map(([text, link]) => /* @__PURE__ */ u2("li", { children: /* @__PURE__ */ u2("a", { href: link, children: text }) })) })
