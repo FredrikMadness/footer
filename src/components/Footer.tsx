@@ -37,7 +37,8 @@ export default ((opts?: FooterOptions) => {
         <p>
           {footerLink ? (
             <>
-              &copy; <a href={footerLink.url}>{footerLink.title}</a> {year}{" "}
+              &copy; <a href={footerLink.url}>{footerLink.title}</a> {year}
+              <br />
             </>
           ) : null}
           {i18n(cfg?.locale ?? "en-US").components.footer.createdWith}{" "}

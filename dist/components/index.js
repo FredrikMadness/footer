@@ -358,7 +358,7 @@ var Footer_default = ((opts) => {
           /* @__PURE__ */ u2("a", { href: footerLink.url, children: footerLink.title }),
           " ",
           year,
-          " "
+          /* @__PURE__ */ u2("br", {})
         ] }) : null,
         i18n(cfg?.locale ?? "en-US").components.footer.createdWith,
         " ",
