@@ -15,6 +15,9 @@ plugins:
   - source: github:quartz-community/footer
     enabled: true
     options:
+      footerLink:
+        title: "Quartz Community"
+        url: "https://quartz.jzhao.xyz/"
       links:
         GitHub: https://github.com/jackyzha0/quartz
         Discord Community: https://discord.gg/cRFFHYye7t
@@ -26,6 +29,10 @@ For advanced use cases, you can override in TypeScript:
 import * as ExternalPlugin from "./.quartz/plugins";
 
 ExternalPlugin.Footer({
+  footerLink: {
+    title: "Quartz Community",
+    url: "https://quartz.jzhao.xyz/",
+  },
   links: {
     GitHub: "https://github.com/jackyzha0/quartz",
     "Discord Community": "https://discord.gg/cRFFHYye7t",
@@ -35,9 +42,10 @@ ExternalPlugin.Footer({
 
 ## Configuration
 
-| Option  | Type                     | Default | Description                                                  |
-| ------- | ------------------------ | ------- | ------------------------------------------------------------ |
-| `links` | `Record<string, string>` | `{}`    | A map of link labels to their URLs to display in the footer. |
+| Option      | Type                                 | Default | Description                                                                 |
+| ----------- | ------------------------------------ | ------- | --------------------------------------------------------------------------- |
+| `footerLink` | `{ title: string; url: string }`     | `undefined` | A single link displayed before the year in the footer.                      |
+| `links`     | `Record<string, string>`             | `{}`    | A map of link labels to their URLs to display in the footer.               |
 
 ## Documentation
 

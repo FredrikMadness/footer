@@ -18,7 +18,11 @@ function getQuartzVersion(): string {
 }
 
 export interface FooterOptions {
-  links: Record<string, string>;
+  links?: Record<string, string>;
+  footerLink?: {
+    title: string;
+    url: string;
+  };
 }
 
 export default ((opts?: FooterOptions) => {
@@ -26,13 +30,18 @@ export default ((opts?: FooterOptions) => {
 
   const Footer: QuartzComponent = ({ displayClass, cfg }: QuartzComponentProps) => {
     const year = new Date().getFullYear();
-    const links = opts?.links ?? [];
+    const links = opts?.links ?? {};
+    const footerLink = opts?.footerLink;
     return (
       <footer class={`${displayClass ?? ""}`}>
         <p>
+          {footerLink ? (
+            <>
+              &copy; <a href={footerLink.url}>{footerLink.title}</a> {year}{" "}
+            </>
+          ) : null}
           {i18n(cfg?.locale ?? "en-US").components.footer.createdWith}{" "}
-          <a href="https://quartz.jzhao.xyz/">Quartz{version ? ` v${version}` : ""}</a> &copy;{" "}
-          {year}
+          <a href="https://quartz.jzhao.xyz/">Quartz{version ? ` v${version}` : ""}</a>
         </p>
         <ul>
           {Object.entries(links).map(([text, link]) => (
